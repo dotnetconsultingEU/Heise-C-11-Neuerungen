@@ -22,15 +22,18 @@ internal class ListPatternsDemo
         var numbers = new int[] { 1, 3, 5, 7, 9 };
 
         WriteLine($"1) {numbers is [1, 3, 5, 7, 9]}");
-        WriteLine($"2) {numbers is [1, .., 7]}"); // .. => Range Pattern, 1 Element
-        WriteLine($"3) {numbers is [1, 3, _, 7, 9]}"); // _ => Discard Pattern, 0..n Elemente
+        WriteLine($"2) {numbers is [1, .., 7]}"); // .. => Range Pattern, 0..n Elemente
+        WriteLine($"3) {numbers is [1, 3, _, 7, 9]}"); // _ => Discard Pattern, 1 Element
         WriteLine($"4) {numbers is [1, _, 3, 7, >= 9]}"); 
 
         if (numbers is [1, 3, 5, var x, 9]) // var => Var Pattern, liest Werte aus "Treffern"
             WriteLine($"5) True x={x}");
         else
             WriteLine($"5) False");
-
+        
+        WriteLine($"6) {numbers is [1, _, 3, 5, 7, >= 9]}");
+        WriteLine($"7) {numbers is [1, .., 3, 5, 7, >= 9]}");
+        WriteLine($"8) {numbers is [1, 3, .. int[] restOfArray]}"); // .. => Rest of array
 
         // Nicht erlaubt sind Type object oder dynamic
         var transactions = new string[][]
